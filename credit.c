@@ -42,7 +42,7 @@ int checksum(long long cardnum)
     int sum2 = 0;
 
      // checksum
-    while (cardnum > 1) //4003600000000014
+    while (cardnum > 0) //4003600000000014
     {
         // calculation 1
         formula = (cardnum / 10) % 10;
@@ -77,7 +77,7 @@ int checksum(long long cardnum)
 int length(long long num)
 {
     int i;
-    for (i = 0; num > 1; i++)
+    for (i = 0; num > 0; i++)
     {
         num /= 10;
     }
@@ -88,30 +88,45 @@ void cardname(int num2, long long input)
 {
     if (num2 == 15)
     {
-        if (input / 1e13 == 34 || input / 1e13 == 37)
+        if (input / 10000000000000 == 34 || input / 10000000000000 == 37)
         {
-            printf("AMERICAN EXPRESS\n");
+            printf("AMEX\n");
+        }
+
+        else
+        {
+            printf("INVALID\n");
         }
     }
 
     else if (num2 == 16)
     {
-        if (input / 1e14 == 51 || input / 1e14 == 52 || input / 1e14 == 53 || input / 1e14 == 54 || input / 1e14 == 55)
+        if (input / 100000000000000 == 51 || input / 100000000000000 == 52 || input / 100000000000000 == 53 || input / 100000000000000 == 54 || input / 100000000000000 == 55)
         {
             printf("MASTERCARD\n");
         }
 
-        else if (input / 1e15 == 4)
+        else if (input / 1000000000000000 == 4)
         {
             printf("VISA\n");
+        }
+
+        else
+        {
+            printf("INVALID\n");
         }
     }
 
     else if (num2 == 13)
     {
-        if (input / 1e12 == 4)
+        if (input / 1000000000000 == 4)
         {
             printf("VISA\n");
+        }
+
+        else
+        {
+            printf("INVALID\n");
         }
     }
 
@@ -120,4 +135,3 @@ void cardname(int num2, long long input)
         printf("INVALID\n");
     }
 }
-
