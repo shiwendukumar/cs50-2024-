@@ -20,7 +20,7 @@ int candidate_count;
 
 // Function prototypes
 bool votes(string name);
-void print_winner(int q, int b, int p);
+void print_winner(void);
 
 int main(int argc, string argv[])
 {
@@ -59,50 +59,56 @@ int main(int argc, string argv[])
     }
 
     // Display winner of election
-    print_winner(candidates[0].votes, candidates[1].votes, candidates[2].votes);
+    print_winner();
 }
 
 // Update votes totals given a new votes
 bool votes(string name)
 {
     // TODO
-    if (strcmp(candidates[0].name, name) == 0)
+    for (int i = 0; i < candidate_count; i++)
     {
-        candidates[0].votes += 1;
-        return true;
-    }
-
-    else if (strcmp(candidates[1].name, name) == 0)
-    {
-        candidates[1].votes += 1;
-        return true;
-    }
-
-    else if (strcmp(candidates[2].name, name) == 0)
-    {
-        candidates[2].votes += 1;
-        return true;
+        if (strcmp(candidates[i].name, name) == 0)
+        {
+            candidates[i].votes += 1;
+            return true;
+        }
     }
     return false;
 }
 
 // Print the winner (or winners) of the election
-void print_winner(int q, int b, int p)
+void print_winner(void)
 {
     // TODO
-    if (q >= b && q >= p)
+    int highest = 0;
+
+    // calculating the highest count
+    for (int i = 0; i < (candidate_count - 1); i++)
     {
-        printf("%s\n", candidates[0].name);
+        if (candidates[i].votes > candidates[i + 1].votes)
+        {
+            if (highest < candidates[i].votes)
+            {
+                highest = candidates[i].votes;
+            }
+        }
+
+        else
+        {
+            if (highest < candidates[i + 1].votes)
+            {
+                highest = candidates[i + 1].votes;
+            }
+        }
     }
 
-    if (b >= p && b >= q)
+    //   printing the name (or names) of the winner (or winners)
+    for (int j = 0; j < candidate_count; j++)
     {
-        printf("%s\n", candidates[1].name);
+        if (candidates[j].votes == highest)
+        {
+            printf("%s\n", candidates[j].name);
+        }
     }
-
-    if (p >= q && p >= b)
-    {
-        printf("%s\n", candidates[2].name);
-    }
-    return;
 }
