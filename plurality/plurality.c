@@ -44,10 +44,10 @@ int main(int argc, string argv[])
         candidates[i].votes = 0;
     }
 
-    int votesr_count = get_int("Number of voters: ");
+    int voter_count = get_int("Number of voters: ");
 
     // Loop over all votesrs
-    for (int i = 0; i < votesr_count; i++)
+    for (int i = 0; i < voter_count; i++)
     {
         string name = get_string("votes: ");
 
